@@ -1,0 +1,67 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        body{
+            background-color: beige;
+        }
+        .box{
+            position: relative;
+            border-radius: 40px;
+            left: 550px;
+            top:100px;
+            height: 300px;
+            width: 300px;
+            z-index: 1;
+            color: burlywood;
+            background-color: burlywood;
+            padding: 40px;
+            color: black;
+            display: flex;
+            align-items: center;
+            
+        }
+        .head{
+            position: relative;
+            left: 44%;
+        }
+        .form{
+            padding-left: 60px;
+            padding-top: -10px;
+        }
+        .btn{
+            margin-left: 50px;
+            height: 30px;
+            width: 65px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="head">Contact Us!</h2>
+    <hr>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="box">
+        <form class="form" method="post">
+            
+            {% csrf_token %}
+            {{form|crispy}}
+            
+            <button class="btn" type="submit">Send</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>
